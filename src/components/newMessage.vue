@@ -16,7 +16,7 @@
                         <label class="sr-only">Enter the username to whom you want to send the message</label>
                         <div class="input-group mr-sm-2 mb-sm-0">
                             <input type="text" class="form-control"
-                            v-model="message.userID" placeholder="userId" autofocus>
+                            v-model="message._id" placeholder="userId">
                         </div>
                     </div>
                 </div>
@@ -28,7 +28,7 @@
                         <label class="sr-only">Please enter the Subject</label>
                         <div class="input-group mr-sm-2 mb-sm-0">
                             <input type="text" class="form-control"
-                            v-model="message.title" placeholder="Subject" required>
+                            v-model="message.title" placeholder="Subject" required autofocus>
                         </div>
                     </div>
                 </div>
@@ -69,8 +69,9 @@ export default {
       message: {
         title: '',
         content: '',
-        userID: ''
-      }
+        _id: ''
+      },
+      user: []
     }
   },
   methods: {
@@ -89,6 +90,23 @@ export default {
           console.log(err)
         })
     }
+  },
+  created () {
+    http.get('/users/' + this.$route.params.userid)
+      .then(res => {
+        if (res.status === 401) {
+          localStorage.removeItem('token')
+          this.$router.push('/users')
+        } else if (res.status === 204) {
+          this.showAlert()
+        } else {
+          console.log(res.data)
+          this.message = res.data.result
+        }
+      })
+      .catch(err => {
+        console.log(err)
+      })
   }
 }
 </script>

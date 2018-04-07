@@ -10,10 +10,13 @@ let MessageSchema = new mongoose.Schema({
   title: {type: String, required: true},
   content: {type: String, required: true},
   userID: { type: String },
-  creationDate: {type: Date, default: Date.now()},
   read: { type: Boolean, default: false },
   receiverId: { type: String },
   senderId: String
+},
+{
+  // https://stackoverflow.com/questions/10006218/which-schematype-in-mongoose-is-best-for-timestamp
+  timestamps: true
 })
 
 // MessageSchema.methods.toJSON = function () {

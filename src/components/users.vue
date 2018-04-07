@@ -4,7 +4,7 @@
     <div class="card userCard"
       v-for="user in users"
       :key="user._id">
-    <div class="card-body card-body-sm">
+    <div class="card-body card-body-sm " @click="sendMessage(user._id)">
       <h6 class="card-subtitle">{{user.firstName}} - {{user._id}}</h6>
       <!-- <a href="#" class="card-link">Card link</a>
       <a href="#" class="card-link">Another link</a> -->
@@ -36,6 +36,11 @@ export default {
       .catch(err => {
         console.log(err)
       })
+  },
+  methods: {
+    sendMessage (arg) {
+      this.$router.push({ name: 'newMessage', params: { userid: arg } })
+    }
   }
 }
 

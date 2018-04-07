@@ -39,6 +39,29 @@ users.get('/profile', (req, res, next) => {
   })
 })
 
+users.get('/:id', (req, res, next) => {
+  const id = req.params.id
+  User.findById(id).exec().then((result) => {
+    if (result) {
+      res.status(201).send({
+        message: 'Here is your details for the requested ID',
+        result: result
+      })
+    } else {
+      res.status(204).send({
+        message: 'User not found'
+      })
+    }
+  }).catch(err => {
+    console.log(err)
+    res.status(500).send({
+      message: 'User not found',
+      error: err.name
+
+    })
+  })
+})
+
 users.patch('/', (req, res, next) => {
   const userId = req.userData.userId
   const updateOps = {}

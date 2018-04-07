@@ -75,7 +75,7 @@
 </template>
 
 <script>
-import http from '../helper/axois'  
+import http from '../helper/axois'
 
 export default {
   data () {
@@ -116,12 +116,12 @@ export default {
         .then(res => {
           if (res.data) {
             http.delete('/messages')
-                .then(res => {
-                  console.log(res)                  
-                  })
-                .catch(err => {
-                  console.log(err)
-                })
+              .then(res => {
+                console.log(res)
+              })
+              .catch(err => {
+                console.log(err)
+              })
             alert('User is deleted Succesdully')
             localStorage.removeItem('token')
             this.$router.push('/users')

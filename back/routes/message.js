@@ -52,8 +52,8 @@ messages.post('/', (req, res, next) => {
   const message = new Message({
     title: req.body.title,
     content: req.body.content,
-    receiverId: req.body.userID,
-    userID: req.body.userID,
+    receiverId: req.body._id,
+    userID: req.body._id,
     senderId: req.userData.userId
   })
   message.save()

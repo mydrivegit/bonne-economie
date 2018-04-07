@@ -1,9 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import login from '@/components/login'
-import signup from '@/components/signup'
+import login from '@/components/auth/login'
+import signup from '@/components/auth/signup'
 import users from '@/components/users'
-import messages from '@/components/messages'
+import messages from '@/components/message/messages'
+import messageView from '@/components/message/messageView'
 import navbar from '@/components/navbar'
 import newMessage from '@/components/newMessage'
 import userProfile from '@/components/userProfile'
@@ -15,41 +16,46 @@ const router = new Router({
     {
       path: '/login',
       name: 'login',
-      component: login
+      component: login,
+      meta: { requiresAuth: false }
     },
     {
       path: '/signup',
       name: 'signup',
-      component: signup
+      component: signup,
+      meta: { requiresAuth: false }
     },
     {
       path: '/users',
       name: 'users',
       components: {
-        default: users, 'navbar': navbar },
-      meta: { requiresAuth: true }
+        default: users, 'navbar': navbar }
     },
     {
       path: '/messages',
       name: 'messages',
       components: {
-        default: messages, 'navbar': navbar },
-      meta: { requiresAuth: true }
+        default: messages, 'navbar': navbar }
     },
     {
       path: '/newMessage',
       name: 'newMessage',
       components: {
-        default: newMessage, 'navbar': navbar },
-      meta: { requiresAuth: true }
+        default: newMessage, 'navbar': navbar }
+    },
+    {
+      path: '/messageView/:messageId',
+      name: 'messageView',
+      components: {
+        default: messageView, 'navbar': navbar
+      }
     },
     {
       path: '/userProfile',
       name: 'userProfile',
       components: {
         default: userProfile, 'navbar': navbar
-      },
-      meta: { requiresAuth: true }
+      }
     },
     {
       path: '*',
@@ -60,16 +66,16 @@ const router = new Router({
 })
 
 router.beforeEach((to, from, next) => {
-  if (to.matched.some(record => record.meta.requiresAuth)) {
-    // this route requires auth, check if logged in
-    // if not, redirect to login page.
-    if (!localStorage.getItem('token')) {
-      next({ name: 'login' })
-    } else {
-      next()
-    }
-  } else {
+  if (to.matched.some(record => record.meta.requiresAuth === false)) {
     next() // make sure to always call next()!
+  } else {
+    // this route requires auth, check if logged in
+    if (localStorage.getItem('token')) {
+      next()
+    } else {
+      // if not, redirect to login page.
+      next({ name: 'login' })
+    }
   }
 })
 

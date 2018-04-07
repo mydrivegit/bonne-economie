@@ -20,6 +20,10 @@ let UserSchema = new mongoose.Schema({
   },
   firstName: String,
   lastName: String
+},
+{
+  // https://stackoverflow.com/questions/10006218/which-schematype-in-mongoose-is-best-for-timestamp
+  timestamps: true
 })
 
 UserSchema.methods.toJSON = function () {
