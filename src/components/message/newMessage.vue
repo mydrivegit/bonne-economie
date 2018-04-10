@@ -61,7 +61,7 @@
 </template>
 
 <script>
-import http from '../helper/axois'
+import http from '../../helper/axois'
 
 export default {
   data () {
@@ -113,8 +113,6 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-@import url("https://fonts.googleapis.com/css?family=Comfortaa:00");
-
 .newmessage-body{
   height: 100vh;
   padding-top: 20vh;

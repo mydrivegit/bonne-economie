@@ -8,6 +8,7 @@ import cors from 'cors'
 import auth from './routes/auth'
 import users from './routes/users'
 import messages from './routes/message'
+import product from './routes/product'
 
 //  app express
 let app = express()
@@ -31,6 +32,7 @@ app.use(bodyParser.json())
 app.use('/auth', auth)
 app.use('/users', users)
 app.use('/messages', messages)
+app.use('/product', product)
 
 //  Handling error if there any wrong Url is requested
 app.use((req, res, next) => {

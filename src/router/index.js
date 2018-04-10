@@ -2,12 +2,12 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import login from '@/components/auth/login'
 import signup from '@/components/auth/signup'
-import users from '@/components/users'
+import navbar from '@/components/navbar'
+import users from '@/components/user/users'
+import userProfile from '@/components/user/userProfile'
 import messages from '@/components/message/messages'
 import messageView from '@/components/message/messageView'
-import navbar from '@/components/navbar'
-import newMessage from '@/components/newMessage'
-import userProfile from '@/components/userProfile'
+import newMessage from '@/components/message/newMessage'
 
 Vue.use(Router)
 

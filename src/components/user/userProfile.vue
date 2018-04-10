@@ -75,7 +75,7 @@
 </template>
 
 <script>
-import http from '../helper/axois'
+import http from '../../helper/axois'
 
 export default {
   data () {

@@ -1,11 +1,8 @@
 import mongoose from 'mongoose'
-// import jwt from 'jsonwebtoken'
-import dotEnv from 'dotenv'
 import pick from 'lodash/pick'
 import autoIncrement from 'mongoose-auto-increment'
 import db from '../db/db'
 autoIncrement.initialize(db)
-dotEnv.config()
 
 let UserSchema = new mongoose.Schema({
   username: {
@@ -22,7 +19,6 @@ let UserSchema = new mongoose.Schema({
   lastName: String
 },
 {
-  // https://stackoverflow.com/questions/10006218/which-schematype-in-mongoose-is-best-for-timestamp
   timestamps: true
 })
 
