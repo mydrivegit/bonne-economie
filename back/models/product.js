@@ -6,15 +6,12 @@ autoIncrement.initialize(db)
 let ProductSchema = new mongoose.Schema({
   title: { type: String, required: true },
   description: { type: String, required: true },
-  price: { type: String, required: true },
-  picture: { type: [String] },
+  price: { type: Number, required: true },
   userId: { type: String, required: true },
-  country: { type: String },
-  region: { type: String },
+  productImage: { type: String },
   city: { type: String },
-  street: { type: String },
-  longitude: { type: Number },
-  latitude: { type: Number }
+  region: { type: String },
+  country: { type: String }
 },
 {
   timestamps: true

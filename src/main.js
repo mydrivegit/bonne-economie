@@ -12,12 +12,12 @@ import jQuery from 'jquery'
 import 'font-awesome/css/font-awesome.css'
 import VueSweetalert2 from 'vue-sweetalert2'
 
+Vue.prototype.moment = moment
 Vue.use(VueSweetalert2)
 global.jQuery = jQuery
 
 Vue.config.productionTip = false
-Vue.prototype.moment = moment
-
+moment.locale('fr')
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

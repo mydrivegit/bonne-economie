@@ -5,6 +5,18 @@
             <div class="row mb-3">
                 <div class="col-md-12">
                     <div class="form-inline">
+                        <label class="form-group text-left col-md-6">Username</label>
+                        <div class="form-group col-md-6">
+                             <input v-if="show" type="text" class="form-control form-control-sm form-control-plaintext"
+                            v-model="users.username">
+                            <div v-else type="text">{{users.username}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-12">
+                    <div class="form-inline">
                         <label  class="form-group text-left col-md-6 text-nowrap">First name</label>
                         <div class="form-group col-md-6">
                             <input v-if="show" type="text" class="form-control form-control-sm"
@@ -24,18 +36,6 @@
                             <div v-else type="text">{{users.lastName}}</div>
                         </div>
                   </div>
-                </div>
-            </div>
-            <div class="row mb-3">
-                <div class="col-md-12">
-                    <div class="form-inline">
-                        <label class="form-group text-left col-md-6">Username</label>
-                        <div class="form-group col-md-6">
-                             <input v-if="show" type="text" class="form-control form-control-sm"
-                            v-model="users.username">
-                            <div v-else type="text">{{users.username}}</div>
-                        </div>
-                    </div>
                 </div>
             </div>
             <div class="row">

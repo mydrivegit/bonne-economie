@@ -28,6 +28,9 @@ app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
 app.use(bodyParser.json())
 
+// config the upload folder into public
+app.use('/upload', express.static('uploads'))
+
 //  Diecting to users file in models folder
 app.use('/auth', auth)
 app.use('/users', users)

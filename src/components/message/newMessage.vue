@@ -1,7 +1,7 @@
 <template>
 <div class="newmessage-body">
   <div class="container">
-        <form class="form-horizontal" @submit.prevent="submit">
+        <form class="form-horizontal" enctype="multipart/form-data" @submit.prevent="submit">
             <div class="row">
                 <div class="col-md-3"></div>
                 <div class="col-md-6">

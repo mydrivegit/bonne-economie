@@ -45,14 +45,16 @@ exports.product_post = (req, res, next) => {
   const product = new Product({
     title: req.body.title,
     description: req.body.description,
-    price: req.body.price,
     userId: req.userData.userId,
-    piture: req.body.picture
+    price: req.body.price,
+    productImage: req.file.path,
+    city: req.body.city,
+    pincode: req.body.pincode
   })
   product.save()
     .then(res.status(200).send({ success: true }))
     .catch((err) => {
-      res.status(500).send(err.errmsg)
+      res.status(500).send('HERE I HAVE ERROR' + err.errmsg)
     })
 }
 

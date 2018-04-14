@@ -8,6 +8,7 @@ import userProfile from '@/components/user/userProfile'
 import messages from '@/components/message/messages'
 import messageView from '@/components/message/messageView'
 import newMessage from '@/components/message/newMessage'
+import newProduct from '@/components/product/newProduct'
 
 Vue.use(Router)
 
@@ -55,6 +56,13 @@ const router = new Router({
       name: 'userProfile',
       components: {
         default: userProfile, 'navbar': navbar
+      }
+    },
+    {
+      path: '/newProduct',
+      name: 'newProduct',
+      components: {
+        default: newProduct, 'navbar': navbar
       }
     },
     {
