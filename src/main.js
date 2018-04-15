@@ -11,6 +11,7 @@ import 'bootstrap/dist/js/bootstrap.min.js'
 import jQuery from 'jquery'
 import 'font-awesome/css/font-awesome.css'
 import VueSweetalert2 from 'vue-sweetalert2'
+import store from './store/store'
 
 Vue.prototype.moment = moment
 Vue.use(VueSweetalert2)
@@ -22,6 +23,7 @@ moment.locale('fr')
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })
