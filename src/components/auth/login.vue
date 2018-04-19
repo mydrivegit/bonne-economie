@@ -4,7 +4,7 @@
     <div class="d row">
         <div class="col-md-3"></div>
             <div class="offset-1 col-md-6">
-                <h2>Mail App</h2>
+                <h2>Bonne économie</h2>
             </div>
         </div>
   </div>
@@ -65,8 +65,6 @@
 </template>
 
 <script>
-import http from '../../helper/axois'
-
 export default {
   data () {
     return {
@@ -78,18 +76,21 @@ export default {
   },
   methods: {
     login () {
-      http.post('/auth/login', this.user)
+      this.$store.dispatch('login', this.user)
         .then(res => {
           const jwttoken = res.data.token
           localStorage.setItem('token', jwttoken)
           if (jwttoken) {
-            this.$router.push('/users')
+            this.$router.push({ name: 'product' })
           }
         })
-        .catch(err => console.log(err))
+        .catch(err => {
+          console.log(err)
+          this.$swal('Please provide the correct Username / Password ')
+        })
     },
     navigateToSignup () {
-      this.$router.push('/signup')
+      this.$router.push({ name: 'signup' })
     }
   }
 }
@@ -97,8 +98,6 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-@import url("https://fonts.googleapis.com/css?family=Comfortaa:00");
-
 .b{
   width: 100%;
   height: 100vh;

@@ -1,6 +1,7 @@
 <template>
 <div class="productGroup">
-  <div class="container">
+  <div class="container col-md-8">
+    <span class="title"> Your Product List</span>
     <table class="table table-sm table-condensed table-hover cursor"
     >
       <thead>
@@ -52,7 +53,7 @@ export default {
     }
   },
   created () {
-    http.get('/product/all')
+    http.get('/product')
       .then(res => {
         if (res.status === 204) {
           this.showAlert()
@@ -77,6 +78,7 @@ export default {
   overflow: hidden;
   text-align: left;
 }
+
 .cursor{
   cursor: pointer;
 }

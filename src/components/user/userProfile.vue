@@ -1,5 +1,5 @@
 <template>
-<div class="userGroup">
+  <div class="userGroup">
       <div class="container col-md-3 userCard">My account Details
         <form class="form-horizontal" @submit.prevent="enter">
             <div class="row mb-3">
@@ -71,36 +71,25 @@
           </div>
         </form>
     </div>
-</div>
+  </div>
 </template>
 
 <script>
-import http from '../../helper/axois'
-
 export default {
   data () {
     return {
-      users: [],
       show: false
     }
   },
   created () {
-    http.get('/users/profile')
-      .then(res => {
-        if (res.status === 401) {
-          localStorage.removeItem('token')
-          this.$router.push('/users')
-        } else {
-          this.users = res.data.doc[0]
-        }
-      })
-      .catch(err => {
-        console.log(err)
-      })
+    this.$store.dispatch('fetchUser')
+  },
+  computed: {
+    users () { return this.$store.getters.user }
   },
   methods: {
     enter () {
-      http.patch('/users', this.users)
+      this.$store.dispatch('modifyData', this.users)
         .then(res => {
           if (res.data) {
             alert('User details altered Succesfully')
@@ -112,10 +101,10 @@ export default {
         })
     },
     removeUser () {
-      http.delete('/users')
+      this.$store.dispatch('deleteUser')
         .then(res => {
           if (res.data) {
-            http.delete('/messages')
+            this.$store.dispatch('deleteMessage')
               .then(res => {
                 console.log(res)
               })

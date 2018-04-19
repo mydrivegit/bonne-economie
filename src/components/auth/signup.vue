@@ -77,8 +77,6 @@
 </template>
 
 <script>
-import http from '../../helper/axois'
-
 export default {
   data () {
     return {
@@ -92,17 +90,20 @@ export default {
   },
   methods: {
     submit () {
-      http.post('/auth/signup', this.user)
+      this.$store.dispatch('signup', this.user)
         .then(res => {
           if (res.status === 201) {
             this.$router.push('/login')
-            alert('account created Succesfully :' + res.data.user.lastName + ' please login')
+            this.$swal('Account created Succesfully : please login')
           }
         })
-        .catch(err => console.log(err))
+        .catch(err => {
+          console.log(err)
+          this.$swal('Username already exist')
+        })
     },
     navigateToLogin () {
-      this.$router.push('/login')
+      this.$router.push({ name: 'login' })
     }
   }
 }
@@ -110,8 +111,6 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-@import url("https://fonts.googleapis.com/css?family=Comfortaa:00");
-
 .b{
   width: 100%;
   height: 100vh;

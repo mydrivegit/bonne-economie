@@ -8,7 +8,7 @@ dotEnv.config()
 exports.product_get_userId = (req, res, next) => {
   const _userId = req.userData.userId
   User.find({ _userId })
-    .exec().then(Product.find({ userID: _userId })
+    .exec().then(Product.find({ userId: _userId })
       .exec()
       .then((docs) => {
         if (docs.length >= 1) {
@@ -74,7 +74,7 @@ exports.product_delete = (req, res, next) => {
 exports.product_get_paramsId = (req, res, next) => {
   const id = req.params.id
   Product.findById(id).exec().then((result) => {
-    if (result) {
+    if (res) {
       res.status(201).send({
         message: 'Here is your details for the requested ID',
         result: result
@@ -86,7 +86,7 @@ exports.product_get_paramsId = (req, res, next) => {
     }
   }).catch(err => {
     console.log(err)
-    res.status(500).send({
+    err.status(500).send({
       message: 'Product not found',
       error: err.name
 

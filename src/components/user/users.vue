@@ -15,31 +15,19 @@
 </template>
 
 <script>
-import http from '../../helper/axois'
 
 export default {
-  data () {
-    return {
-      users: []
-    }
-  },
   created () {
-    http.get('/users')
-      .then(res => {
-        if (res.status === 401) {
-          localStorage.removeItem('token')
-          this.$router.push('/login')
-        } else {
-          this.users = res.data.content
-        }
-      })
-      .catch(err => {
-        console.log(err)
-      })
+    this.$store.dispatch('fetchUsersList')
   },
   methods: {
     sendMessage (arg) {
       this.$router.push({ name: 'newMessage', params: { userid: arg } })
+    }
+  },
+  computed: {
+    users () {
+      return this.$store.getters.users
     }
   }
 }

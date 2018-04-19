@@ -5,10 +5,14 @@ import signup from '@/components/auth/signup'
 import navbar from '@/components/navbar'
 import users from '@/components/user/users'
 import userProfile from '@/components/user/userProfile'
+import sidebar from '@/components/user/sidebar'
 import messages from '@/components/message/messages'
 import messageView from '@/components/message/messageView'
 import newMessage from '@/components/message/newMessage'
 import newProduct from '@/components/product/newProduct'
+import product from '@/components/product/product'
+import productView from '@/components/product/productView'
+import myProductList from '@/components/product/myProductList'
 
 Vue.use(Router)
 
@@ -55,19 +59,41 @@ const router = new Router({
       path: '/userProfile',
       name: 'userProfile',
       components: {
-        default: userProfile, 'navbar': navbar
+        default: userProfile, 'navbar': navbar, 'sidebar': sidebar
       }
     },
     {
       path: '/newProduct',
       name: 'newProduct',
       components: {
-        default: newProduct, 'navbar': navbar
+        default: newProduct, 'navbar': navbar, 'sidebar': sidebar
+      }
+    },
+    {
+      path: '/Product',
+      name: 'product',
+      components: {
+        default: product, 'navbar': navbar
+      },
+      meta: { requiresAuth: false }
+    },
+    {
+      path: '/ProductView/:productId',
+      name: 'productView',
+      components: {
+        default: productView, 'navbar': navbar
+      }
+    },
+    {
+      path: '/myProductList',
+      name: 'myProductList',
+      components: {
+        default: myProductList, 'navbar': navbar, 'sidebar': sidebar
       }
     },
     {
       path: '*',
-      redirect: {name: 'users'}
+      redirect: {name: 'product'}
     }
   ],
   mode: 'history'

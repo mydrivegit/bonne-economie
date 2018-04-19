@@ -1,14 +1,37 @@
 <template>
-<div class="messageGroup">
+<div class="productGroup">
   <div class="container">
-      <div class="row mb-3 text-left">
-        <div class="col-md-6">
-           <div> User Id : {{message.userID}}</div>
-           <div> Mail Received at : {{moment(message.createdAt).format('HH:mm')}} - {{moment(message.createdAt).format('MMMM Do YYYY')}}</div>
-            Mail Content: <div> {{message.content}}</div>
-        </div>
-      </div>
-  </div>
+  <div class="card">
+      <div class="row">
+          <aside class="col-sm-5 border-right">
+              <article class="gallery-wrap">
+                  <div class="img-big-wrap">
+                    <div><img :src="loadImg(product.productImage)"></div>
+                  </div>
+              </article>
+          </aside>
+          <aside class="col-sm-7">
+            <article class="card-body-lg">
+                <h3 class="title mb-3">{{ product.title }}</h3>
+                <p class="price-detail-wrap">
+                    <span class="price h3 text-warning">
+                        <span class="num">{{ product.price }}</span>
+                        <span class="currency"> €</span>
+                    </span>
+                </p><!-- price-detail-wrap .// -->
+              <dl class="item-property">
+                <dt>Description</dt>
+                  <dd>
+                    <p>{{ product.description}}</p>
+                </dd>
+              </dl>
+              <hr>
+            </article> <!-- card-body.// -->
+          </aside> <!-- col.// -->
+    </div>
+</div> <!-- card.// -->
+</div>
+<!--container.//-->
 </div>
 </template>
 
@@ -16,43 +39,41 @@
 import http from '../../helper/axois'
 
 export default {
-  name: 'messages',
   data () {
     return {
-      message: []
+      product: []
     }
   },
-  created () {
-    http.get('/messages/' + this.$route.params.messageId)
+  beforeCreate () {
+    http
+      .get('/product/' + this.$route.params.productId)
       .then(res => {
         if (res.status === 401) {
           localStorage.removeItem('token')
-          this.$router.push('/users')
-        } else if (res.status === 204) {
-          this.showAlert()
+          this.$router.push({name: 'product'})
         } else {
-          console.log(res.data)
-          this.message = res.data.result
+          this.product = res.data.result
         }
       })
-      .then(
-        http.patch('/messages/' + this.$route.params.messageId, {read: true})
-          .then(res => {
-            console.log(res)
-          })
-          .catch(err => {
-            console.log(err)
-          }))
-      .catch(err => {
-        console.log(err)
+      .catch(error => {
+        console.log(error)
+        if (error.status === 500) {
+          this.$slots('Please click the product to view the detail')
+          this.$router.push({ name: 'product' })
+        }
       })
+  },
+  methods: {
+    loadImg (path) {
+      if (path) return 'http://localhost:3000/' + path
+    }
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.messageGroup{
+.productGroup {
   height: 100vh;
   padding-top: 20vh;
   margin: auto;
@@ -60,12 +81,18 @@ export default {
   overflow: hidden;
   text-align: center;
 }
-.messageCard{
+.productCard {
   margin: auto;
   width: 18rem;
   text-align: left;
 }
-.cursor{
+.cursor {
   cursor: pointer;
+}
+.gallery-wrap .img-big-wrap img {
+    height: 450px;
+    width: auto;
+    display: inline-block;
+    cursor: zoom-in;
 }
 </style>

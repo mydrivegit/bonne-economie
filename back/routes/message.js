@@ -5,17 +5,11 @@ import messageController from '../controller/message'
 const messages = express.Router()
 //  verification of login authentication middleware
 messages.use(auth)
-
-messages.get('/', messageController.message_get_userId)
-
-messages.get('/all', messageController.message_get_all)
-
-messages.post('/', messageController.message_post)
-
-messages.delete('/', messageController.message_delete)
-
-messages.get('/:id', messageController.message_get_paramsId)
-
-messages.patch('/:id', messageController.message_patch_paramsId)
+  .get('/', messageController.message_get_userId)
+  .get('/all', messageController.message_get_all)
+  .post('/', messageController.message_post)
+  .delete('/', messageController.message_delete)
+  .get('/:id', messageController.message_get_paramsId)
+  .patch('/:id', messageController.message_patch_paramsId)
 
 export default messages

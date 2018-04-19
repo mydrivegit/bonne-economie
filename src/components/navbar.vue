@@ -1,6 +1,6 @@
 <template>
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-  <router-link class="nav-link text-nowrap" style="cursor: pointer;" data-toggle="collapse" data-target=".navbar-collapse.show" tag="li" :to="{name: 'users'}">Coin</router-link>
+  <router-link class="nav-link text-nowrap" style="cursor: pointer;" data-toggle="collapse" data-target=".navbar-collapse.show" tag="li" :to="{name: 'product'}">Bonne économie</router-link>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="ture" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -12,9 +12,6 @@
       </li>
       <li class="nav-item">
         <router-link class="nav-link borderLineRight" data-toggle="collapse" data-target=".navbar-collapse.show" tag="li" :to="{name: 'messages'}">Messages</router-link>
-      </li>
-      <li class="nav-item">
-        <router-link class="nav-link borderLineRight text-nowrap" data-toggle="collapse" data-target=".navbar-collapse.show" tag="li" :to="{name: 'newMessage'}">New Message</router-link>
       </li>
     </ul>
     <form class="form-inline col-md-6 my-2 my-lg-0 input-group mr-auto">

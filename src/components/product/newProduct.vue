@@ -1,7 +1,7 @@
 <template>
-  <div class="container">
+  <div>
         <form class="form-horizontal" enctype="multipart/form-data" @submit.prevent="submit" >
-            <div class="row">
+            <div class="row justify-content-md-center">
                 <div class="col-md-3"></div>
                 <div class="col-md-6">
                     <h2>Add New Product
@@ -9,7 +9,7 @@
                     <hr>
                 </div>
             </div>
-            <div class="row">
+            <div class="row justify-content-md-center">
                 <div class="col-md-3"></div>
                 <div class="col-md-6">
                     <div class="form-group">
@@ -21,7 +21,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row justify-content-md-center">
                 <div class="col-md-3"></div>
                 <div class="col-md-6">
                     <div class="form-group">
@@ -33,7 +33,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row justify-content-md-center">
                 <div class="col-md-3"></div>
                 <div class="col-md-6">
                     <div class="form-group">
@@ -48,7 +48,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row justify-content-md-center">
                 <div class="col-md-3"></div>
                 <div class="col-md-6">
                     <div class="form-group ">
@@ -59,7 +59,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row justify-content-md-center">
                 <div class="col-md-3"></div>
                 <div class="col-md-6">
                     <div class="form-group ">
@@ -71,7 +71,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row justify-content-md-center">
                 <div class="col-md-3"></div>
                 <div class="col-md-6">
                     <div class="form-group">
@@ -83,7 +83,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row justify-content-md-center">
                 <div class="col-md-3"></div>
                 <div class="col-md-6">
                     <div class="form-group">
@@ -95,7 +95,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row justify-content-md-center">
                 <div class="col-md-3"></div>
                 <div class="col-md-6">
                     <div class="form-group">
@@ -187,6 +187,7 @@ export default {
 <style scoped>
 .newprodu-body{
   height: 100vh;
+  position: fixed;
   padding-top: 20vh;
   background-color: rgb(204, 211, 209);
   overflow: hidden;

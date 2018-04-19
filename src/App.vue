@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <router-view name="navbar"/>
+    <router-view name="sidebar"/>
     <transition name="bounce"><router-view/></transition>
   </div>
 </template>

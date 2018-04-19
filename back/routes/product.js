@@ -27,17 +27,11 @@ const upload = multer({
 //  verification of login authentication middleware
 
 product.use(auth)
-
-product.get('/', productController.product_get_userId)
-
-product.get('/all', productController.product_get_all)
-
-product.post('/', upload.single('productImage'), productController.product_post)
-
-product.delete('/', productController.product_delete)
-
-product.get('/:id', productController.product_get_paramsId)
-
-product.patch('/:id', productController.product_patch_paramsId)
+  .get('/', productController.product_get_userId)
+  .get('/all', productController.product_get_all)
+  .post('/', upload.single('productImage'), productController.product_post)
+  .delete('/', productController.product_delete)
+  .get('/:id', productController.product_get_paramsId)
+  .patch('/:id', productController.product_patch_paramsId)
 
 export default product

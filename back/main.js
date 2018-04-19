@@ -29,7 +29,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 // config the upload folder into public
-app.use('/upload', express.static('uploads'))
+app.use('/upload', express.static('upload'))
 
 //  Diecting to users file in models folder
 app.use('/auth', auth)
